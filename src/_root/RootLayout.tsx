@@ -1,12 +1,11 @@
-import { Bottombar, Topbar } from '@/components/shared'
-import LeftSideBar from '@/components/shared/LeftSidebar'
+import { Bottombar, LeftSidebar, Topbar } from '@/components/shared'
 import { Outlet } from 'react-router-dom'
 
 const RootLayout = () => {
     return (
         <div className="w-full md:flex">
             <Topbar />
-            <LeftSideBar />
+            <LeftSidebar />
 
             <section className="flex flex-1 h-full">
                 <Outlet />
