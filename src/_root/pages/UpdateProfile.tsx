@@ -45,13 +45,13 @@ const UpdateProfile = () => {
     const { mutateAsync: updateUser, isPending: isLoadingUpdate } = useUpdateUser();
 
     const handleUpdate = async (value: z.infer<typeof ProfileValidation>) => {
-        const updatedUser = currentUser && await updateUser({
-            userId: currentUser.$id,
+        const updatedUser = await updateUser({
+            userId: currentUser?.$id || '',
             name: value.name,
             bio: value.bio,
             file: value.file,
-            imageUrl: currentUser.imageUrl,
-            imageId: currentUser.imageId,
+            imageUrl: currentUser?.imageUrl || '',
+            imageId: currentUser?.imageId || '',
         });
     
         if (!updatedUser) {
@@ -101,8 +101,8 @@ const UpdateProfile = () => {
                         <FormItem className="flex">
                         <FormControl>
                             <ProfileUploader
-                            fieldChange={field.onChange}
-                            mediaUrl={currentUser.imageUrl}
+                                fieldChange={field.onChange}
+                                mediaUrl={currentUser.imageUrl}
                             />
                         </FormControl>
                         <FormMessage className="shad-form_message" />
@@ -135,7 +135,6 @@ const UpdateProfile = () => {
                             type="text"
                             className="shad-input"
                             {...field}
-                            disabled
                             />
                         </FormControl>
                         <FormMessage />

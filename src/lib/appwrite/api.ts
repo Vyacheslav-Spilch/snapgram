@@ -251,7 +251,7 @@ export async function savePost (postId: string, userId: string) {
             ID.unique(),
             {
                 user: userId,
-                post: postId
+                post: postId,
             }
         )
 
@@ -468,7 +468,7 @@ export async function updateUser(user: IUpdateUser) {
             if (!uploadedFile) throw Error;
     
             // Get new file url
-            const fileUrl = getFilePreview(uploadedFile.$id);
+            const fileUrl = await getFilePreview(uploadedFile.$id);
             if (!fileUrl) {
             await deleteFile(uploadedFile.$id);
             throw Error;

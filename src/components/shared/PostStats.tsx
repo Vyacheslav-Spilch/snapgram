@@ -30,6 +30,8 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         setIsSaved(!!savedPostRecord)
     }, [currentUser])
 
+    
+
 
     const handleLikePost = (e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         e.stopPropagation()
@@ -52,7 +54,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
             setIsSaved(false)
             deleteSavedPost(savedPostRecord.$id)
         } else {
-            savePost({postId: post.$id, userId: userId})
+            savePost({ postId: post.$id, userId: userId })
             setIsSaved(true)
         }
     }

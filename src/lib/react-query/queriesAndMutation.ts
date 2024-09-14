@@ -78,10 +78,10 @@ export const useSavePost = () => {
     return useMutation({
         mutationFn: ({
             postId, 
-            userId
+            userId,
         }: {
             postId: string, 
-            userId: string
+            userId: string,
         }) => savePost(postId, userId),
         onSuccess: () => {
             queryClient.invalidateQueries({

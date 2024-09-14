@@ -10,10 +10,12 @@ const Saved = () => {
     const savePosts = currentUser?.save.map((savePost: Models.Document) => ({
         ...savePost.post,
         creator: {
-            imageUrl: currentUser.imageUrl,
+            imageUrl: '',
         },
     }))
     .reverse();
+
+        
 
     return (
     <div className="saved-container">

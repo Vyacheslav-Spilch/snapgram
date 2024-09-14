@@ -127,7 +127,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                 name="tags"
                 render={({ field }) => (
                 <FormItem>
-                    <FormLabel className="shad-form_label">Add Tags(separetad by comma ",")</FormLabel>
+                    <FormLabel className="shad-form_label">Add Tags (separetad by comma ",")</FormLabel>
                     <FormControl>
                     <Input 
                         type="text" 

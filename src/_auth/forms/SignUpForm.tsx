@@ -34,6 +34,9 @@ const SignUpForm = () => {
         },
     })
 
+
+    
+
     async function onSubmit(userData: z.infer<typeof SignUpValidation>) {
         const activeSession = await checkActiveSession();
         if(activeSession) {
