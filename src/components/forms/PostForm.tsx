@@ -20,7 +20,6 @@ import { useUserContext } from "@/context/AuthContext"
 import { toast } from "@/hooks/use-toast"
 import { useNavigate } from "react-router-dom"
 import { useCreatePost, useUpdatePost } from "@/lib/react-query/queriesAndMutation"
-import { Loader } from "lucide-react"
 
 type PostFormProps = {
     post?: Models.Document,
