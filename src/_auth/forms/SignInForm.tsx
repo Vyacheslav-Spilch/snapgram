@@ -18,7 +18,7 @@ import { checkActiveSession, deleteSessions } from "@/lib/appwrite/api"
 const SignInForm = () => {
     const { toast } = useToast()
     const { mutateAsync: signInAccount, isPending: isSignIn } = useSignInAccount()
-    const { checkAuthUser, isLoading: isUserLoading} = useUserContext()
+    const { checkAuthUser } = useUserContext()
     const navigate = useNavigate()
 
     const form = useForm<z.infer<typeof SignInValidation>>({
@@ -88,7 +88,7 @@ const SignInForm = () => {
                 )}
             />
             <Button type="submit" className="shad-button_primary">
-                {isUserLoading ? (
+                {isSignIn ? (
                     <div className="flex-center gap-2">
                         <Loader /> Loading...
                     </div>

@@ -22,7 +22,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         accept: {
-            "image/*": [".png", ".jpeg", ".jpg"],
+            "image/*": [".png", ".jpeg", ".jpg", ".svg", ".webp"],
         }
     })
     return (
@@ -39,7 +39,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
                         className='file_uploader-img'
                     />
                 </div>
-                <p className='file_uploader-label'>Click or drog photo to replace</p>
+                <p className='file_uploader-label'>Click or drag photo to replace</p>
             </>
         ) : (
             <div className='file_uploader-box'>
