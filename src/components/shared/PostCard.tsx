@@ -14,6 +14,13 @@ const PostCard = ({ post }: PostCardProps) => {
 
     if(!post.creator) return;
 
+
+    const spliceLocation = post.location.split('').slice(0, 20)
+
+    console.log(spliceLocation.join(''));
+    
+    
+
     return (
         <div className="post-card">
             <div className="flex-between md:w-full">
@@ -36,7 +43,10 @@ const PostCard = ({ post }: PostCardProps) => {
                             </p>
                             -
                             <p className="subtle-semibold lg:small-regular">
-                                {post.location}
+                                {post.location.length <= 20 
+                                    ? post.location 
+                                    : post.location.split('').slice(0, 20)
+                                }
                             </p>
                         </div>
                     </div>

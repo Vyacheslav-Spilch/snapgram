@@ -78,7 +78,10 @@ const PostDetails = () => {
                             </p>
                             •
                             <p className="subtle-semibold lg:small-regular">
-                            {post?.location.length <= 20 && post?.location}
+                                {post.location.length <= 20 
+                                    ? post.location 
+                                    : post.location.split('').slice(0, 20)
+                                }
                             </p>
                         </div>
                     </div>
