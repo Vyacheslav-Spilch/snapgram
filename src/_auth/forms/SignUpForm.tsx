@@ -19,7 +19,7 @@ import { checkActiveSession, deleteSessions } from "@/lib/appwrite/api"
 
 const SignUpForm = () => {
     const { toast } = useToast()
-    const { mutateAsync: createUserAccount, isPending: isCreatingAccount,  } = useCreateUserAccount()
+    const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount()
     const { mutateAsync: signInAccount } = useSignInAccount()
     const { checkAuthUser } = useUserContext()
     const navigate = useNavigate()

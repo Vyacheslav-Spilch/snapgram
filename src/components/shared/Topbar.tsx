@@ -6,10 +6,10 @@ import { useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 const Topbar = () => {
-
-    const {mutate: signOut, isSuccess, isPending: isLoadingAccount} = useSignOutAccount()
+    const { mutate: signOut, isSuccess} = useSignOutAccount()
     const navigate = useNavigate()
     const { user } = useUserContext()
+    
 
     useEffect(() => {
         if(isSuccess) navigate(0)
@@ -38,7 +38,7 @@ const Topbar = () => {
                     </Button>
                     <Link to={`/profile/${user.id}`} className="flex-center gap-3">
                         {
-                            isLoadingAccount 
+                            !user?.id
                             ? <Loader /> 
                             : <img 
                                 src={user.imageUrl || "/assets/images/profile-placeholder.svg"}

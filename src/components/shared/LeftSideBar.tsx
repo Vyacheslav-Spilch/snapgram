@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom"
 
 const LeftSideBar = () => {
-    const { mutate: signOut, isSuccess, isPending: isLoadingAccount} = useSignOutAccount()
+    const { mutate: signOut, isSuccess} = useSignOutAccount()
     const navigate = useNavigate()
     const { user } = useUserContext()
     const { pathname } = useLocation()
@@ -32,7 +32,7 @@ const LeftSideBar = () => {
 
             <Link to={`/profile/${user.id}`} className="flex gap-3 items-center">
                 {
-                    isLoadingAccount 
+                    !user?.id
                     ? <Loader />  
                     : <img 
                         src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
