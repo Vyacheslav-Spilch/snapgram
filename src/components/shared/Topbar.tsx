@@ -1,3 +1,4 @@
+import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui/button"
 import { useUserContext } from "@/context/AuthContext"
 import { useSignOutAccount } from "@/lib/react-query/queriesAndMutation"
@@ -6,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Topbar = () => {
 
-    const {mutate: signOut, isSuccess} = useSignOutAccount()
+    const {mutate: signOut, isSuccess, isPending: isLoadingAccount} = useSignOutAccount()
     const navigate = useNavigate()
     const { user } = useUserContext()
 
@@ -36,11 +37,14 @@ const Topbar = () => {
                         />
                     </Button>
                     <Link to={`/profile/${user.id}`} className="flex-center gap-3">
-                        <img 
-                            src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
-                            alt="profile"
-                            className="h-8 w-8 rounded-full" 
-                        />
+                        {
+                            isLoadingAccount 
+                            ? <Loader /> 
+                            : <img 
+                                src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
+                                alt="profile"
+                                className="h-8 w-8 rounded-full" />
+                        }
                     </Link>
                 </div>
             </div>

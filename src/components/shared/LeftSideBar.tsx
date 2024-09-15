@@ -1,3 +1,4 @@
+import Loader from "@/components/shared/Loader"
 import { Button } from "@/components/ui/button"
 import { sidebarLinks } from "@/constans"
 import { useUserContext } from "@/context/AuthContext"
@@ -7,7 +8,7 @@ import { useEffect } from "react"
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom"
 
 const LeftSideBar = () => {
-    const { mutate: signOut, isSuccess} = useSignOutAccount()
+    const { mutate: signOut, isSuccess, isPending: isLoadingAccount} = useSignOutAccount()
     const navigate = useNavigate()
     const { user } = useUserContext()
     const { pathname } = useLocation()
@@ -30,11 +31,14 @@ const LeftSideBar = () => {
             </Link>
 
             <Link to={`/profile/${user.id}`} className="flex gap-3 items-center">
-                <img 
-                    src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
-                    alt="profile"
-                    className="h-12 w-12 rounded-full" 
-                />
+                {
+                    isLoadingAccount 
+                    ? <Loader />  
+                    : <img 
+                        src={user.imageUrl || "/assets/images/profile-placeholder.svg"}
+                        alt="profile"
+                        className="h-12 w-12 rounded-full" />
+                }
                 <div className="flex flex-col">
                     <p className="body-bold">
                         {user.name}
