@@ -52,7 +52,7 @@ const PostDetails = () => {
             <img
                 src={post?.imageUrl}
                 alt="creator"
-                className="post_details-img"
+                className="post_details-img h-full"
             />
 
         <div className="post_details-info">
@@ -61,10 +61,10 @@ const PostDetails = () => {
                     to={`/profile/${post?.creator.$id}`}
                     className="flex items-center gap-3">
                     <img
-                    src={
-                        post?.creator.imageUrl ||
-                        "/assets/icons/profile-placeholder.svg"
-                    }
+                        src={
+                            post?.creator.imageUrl ||
+                            "/assets/icons/profile-placeholder.svg"
+                        }
                         alt="creator"
                         className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
                     />

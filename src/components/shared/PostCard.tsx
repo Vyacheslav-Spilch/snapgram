@@ -14,11 +14,7 @@ const PostCard = ({ post }: PostCardProps) => {
 
     if(!post.creator) return;
 
-
-    const spliceLocation = post.location.split('').slice(0, 20)
-
-    console.log(spliceLocation.join(''));
-    
+    console.log(!!post.tags.join(''));
     
 
     return (
@@ -29,7 +25,7 @@ const PostCard = ({ post }: PostCardProps) => {
                         <img 
                             src={post?.creator?.imageUrl || '/assets/icons/profile-placeholder.svg'} 
                             alt="creator" 
-                            className="rounded-full w-12 lg:h-12"
+                            className="h-11 w-11 rounded-full md:rounded-full object-cover object-center"
                         />
                     </Link>
 
@@ -69,7 +65,7 @@ const PostCard = ({ post }: PostCardProps) => {
                 <div className="small-medium lg:base-medium py-5">
                     <p>{post.caption}</p>
                     <ul className="flex flex-wrap gap-1 mt-2">
-                        {post.tags?.map((tag: string, index: number) => (
+                        {!!post.tags.join('') && post.tags.map((tag: string, index: number) => (
                             <li key={`${tag}${index}`} className="text-light-3 small-regular">
                                 #{tag}
                             </li>

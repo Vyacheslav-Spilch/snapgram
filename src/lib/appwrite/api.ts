@@ -378,7 +378,7 @@ export async function deletePost(postId: string, imageId: string) {
 
 
 export async function getInfinitePosts ({pageParam}: {pageParam: number}) {
-    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
+    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(8)]
 
     if(pageParam) {
         queries.push(Query.cursorAfter(pageParam.toString()))
@@ -405,6 +405,9 @@ export async function searchPosts (searchTerm: string) {
             appwriteConfig.postCollectionId,
             [Query.search('caption', searchTerm)]
         )
+
+        console.log(posts.documents.length);
+        
 
         if(!posts) throw Error
         return posts
