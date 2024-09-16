@@ -53,11 +53,10 @@ const PostForm = ({ post, action }: PostFormProps) => {
                 imageId: post.ImageId,
                 imageUrl: post.imageUrl
             })
-
+            
             if(!updatedPost) {
                 toast({title: 'Please try again'})
             }
-
             return navigate(`/posts/${post.$id}`)
         }
 

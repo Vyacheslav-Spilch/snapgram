@@ -400,14 +400,22 @@ export async function getInfinitePosts ({pageParam}: {pageParam: number}) {
 
 export async function searchPosts (searchTerm: string) {
     try {
-        const posts = await databases.listDocuments(
+        //Поиск по описанию
+        let posts = await databases.listDocuments(
             appwriteConfig.databasesId,
             appwriteConfig.postCollectionId,
             [Query.search('caption', searchTerm)]
         )
 
-        console.log(posts.documents.length);
-        
+        //Поиск по локации
+        if(!posts.documents.length) {
+            posts = await databases.listDocuments(
+                appwriteConfig.databasesId,
+                appwriteConfig.postCollectionId,
+                [Query.search('location', searchTerm)]
+            )
+        }
+
 
         if(!posts) throw Error
         return posts
