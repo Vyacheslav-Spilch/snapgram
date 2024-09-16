@@ -4,7 +4,7 @@ import PostStats from "@/components/shared/PostStats"
 import { Button } from "@/components/ui/button"
 import { useUserContext } from "@/context/AuthContext"
 import { useDeletePost, useGetPostById, useGetUserPosts } from "@/lib/react-query/queriesAndMutation"
-import { formatDateString } from "@/lib/utils"
+import { formatDateString, multiFormatDateString } from "@/lib/utils"
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 const PostDetails = () => {
@@ -56,29 +56,31 @@ const PostDetails = () => {
             />
 
         <div className="post_details-info">
-            <div className="flex-between w-full">
+            <div className="flex flex-between items-start w-full h-full">
                 <Link
                     to={`/profile/${post?.creator.$id}`}
-                    className="flex items-center gap-3">
+                    className="flex items-start gap-4">
                     <img
                         src={
                             post?.creator.imageUrl ||
                             "/assets/icons/profile-placeholder.svg"
                         }
                         alt="creator"
-                        className="w-8 h-8 lg:w-12 lg:h-12 rounded-full"
+                        // className="w-8 h-8 rounded-full lg:w-12 lg:h-12"
+                        className="h-10 w-10 rounded-full lg:w-12 lg:h-12 md:rounded-full object-cover object-center"
                     />
-                    <div className="flex gap-1 flex-col">
+                    <div className="flex gap-3 flex-col">
                         <p className="base-medium lg:body-bold text-light-1">
                             {post?.creator.name}
                         </p>
                         <div className="flex-center gap-2 text-light-3">
                             <p className="subtle-semibold lg:small-regular ">
-                            {formatDateString(post?.$createdAt)}
+                                {multiFormatDateString(post?.$createdAt)}
                             </p>
-                            •
+                            <p>{!!post.location && `${'•'}`}</p>
                             <p className="subtle-semibold lg:small-regular">
-                                {post.location.length <= 20 
+                                {
+                                    post.location.length <= 20 
                                     ? post.location 
                                     : post.location.split('').slice(0, 20)
                                 }
@@ -87,15 +89,13 @@ const PostDetails = () => {
                     </div>
                 </Link>
 
-                <div className="flex flex-center items-start gap-3">
+                <div className="flex items-start gap-3 ml-3 h-full">
                     <Link
                         to={`/update-post/${post?.$id}`}
                         className={`${user.id !== post?.creator.$id && "hidden"} w-6 h-6`}>
                     <img
                         src={"/assets/icons/edit.svg"}
                         alt="edit"
-                        // width={24}
-                        // height={24}
                     />
                     </Link>
 
