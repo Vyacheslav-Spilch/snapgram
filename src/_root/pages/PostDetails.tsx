@@ -4,7 +4,7 @@ import PostStats from "@/components/shared/PostStats"
 import { Button } from "@/components/ui/button"
 import { useUserContext } from "@/context/AuthContext"
 import { useDeletePost, useGetPostById, useGetUserPosts } from "@/lib/react-query/queriesAndMutation"
-import { formatDateString, multiFormatDateString } from "@/lib/utils"
+import { multiFormatDateString } from "@/lib/utils"
 import { Link, useNavigate, useParams } from "react-router-dom"
 
 const PostDetails = () => {
@@ -77,7 +77,7 @@ const PostDetails = () => {
                             <p className="subtle-semibold lg:small-regular ">
                                 {multiFormatDateString(post?.$createdAt)}
                             </p>
-                            <p>{!!post.location && `${'•'}`}</p>
+                            <p>{!!post.location && `${' • '}`}</p>
                             <p className="subtle-semibold lg:small-regular">
                                 {
                                     post.location.length <= 20 
